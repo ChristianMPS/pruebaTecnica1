@@ -1,6 +1,6 @@
 ## Getting Started
 
-Este proyecto sirve para hacer el manejo de "tasks", donde se podra crear, actulizar, borrar y ver todas las "tasks" que tengamos.
+Este proyecto sirve para hacer el manejo de "tasks", donde se podra crear, actualizar, borrar y ver todas las "tasks" que tengamos.
 
 1. Crear la base de datos, a continuacion se mostrara el script que puedes usar:
 
