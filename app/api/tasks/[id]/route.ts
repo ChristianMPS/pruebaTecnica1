@@ -5,7 +5,7 @@ export async function PUT(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = await params;
   const { title, description, completed } = await request.json();
 
   const { data, error } = await supabase
@@ -25,7 +25,7 @@ export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
 ) {
-  const { id } = params;
+  const { id } = await params;
 
   const { error } = await supabase.from("tasks").delete().eq("id", id);
 

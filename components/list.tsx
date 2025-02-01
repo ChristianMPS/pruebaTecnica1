@@ -42,9 +42,12 @@ const TaskList = () => {
         if (!response.ok) throw new Error("Error al cargar task");
 
         setTask(tasks);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Ocurrió un error desconocido");
+        }
       } finally {
         setLoading(false);
       }
@@ -75,7 +78,7 @@ const TaskList = () => {
       ) : (
         <Table>
           <TableHeader>
-            <TableRow>
+            <TableRow className="text-center">
               <TableHead>ID</TableHead>
               <TableHead>Nombre</TableHead>
               <TableHead>Estado</TableHead>
@@ -84,7 +87,7 @@ const TaskList = () => {
               <TableHead>Opciones</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="max-h-8 overflow-y-auto">
             {task.length > 0 ? (
               task.map((task) => (
                 <TableRow key={task.id}>
@@ -100,6 +103,7 @@ const TaskList = () => {
                       onClick={() => handleEdit(task)}
                       disabled={loading}
                       colors="edit"
+                      className="w-32"
                     >
                       Editar Tarea
                     </Button>
@@ -109,6 +113,7 @@ const TaskList = () => {
                       onClick={() => handleDelete(task)}
                       disabled={loading}
                       colors="delete"
+                      className="w-32"
                     >
                       Eliminar Tarea
                     </Button>
